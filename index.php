@@ -48,7 +48,7 @@ AND CRN.courseID=courses.courseID
 AND CRN.instructorID= instructors.instructorID
  
   ";
-
+//for some reason forces instructorID matching semesterID to populate
  $stmt = $db->prepare($query1);
  $stmt->bind_param('i', $semesterID1);
  $stmt->execute();
@@ -197,7 +197,7 @@ $stmt2->store_result();
 `instructors`.`lName`,
 `semesters`.`semesterID`
 
- FROM semesters , `CRN` , `instructors` , `courses`
+ FROM semesters , CRN , instructors , courses
 WHERE CRN.semesterID=semesters.semesterID
 AND semesters.semesterID= ?
 AND CRN.courseID=courses.courseID
